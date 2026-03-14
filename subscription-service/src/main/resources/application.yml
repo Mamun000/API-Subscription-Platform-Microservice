@@ -1,0 +1,35 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: subscription-service
+  datasource:
+    url: jdbc:postgresql://postgres:5432/api_platform
+    username: postgres
+    password: 123456
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: analytics-group
+      auto-offset-reset: earliest
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka
+  instance:
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
